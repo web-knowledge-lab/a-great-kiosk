@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://web-knowledge-lab.github.io/a-great-kiosk/sitemap.xml
