@@ -22,60 +22,33 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "NewsArticle",
-        "headline": "Facel Véga previews the HK-500-E concept sedan",
-        "datePublished": "2026-01-22",
-        "publisher": {
-          "@type": "Organization",
-          "name": "A Great Kiosk"
-        },
-        "about": [
-          {
-            "@type": "Organization",
-            "name": "Facel Véga",
-            "description": "POC / synthetic organization profile used only for a technical experiment.",
-            "knowsAbout": [
-              "French luxury design heritage (synthetic)",
-              "Coachbuilt electric grand tourers (synthetic)",
-              "Limited-run concept vehicles (synthetic)"
-            ],
-            "disambiguatingDescription": "Synthetic POC brand entity for knowledge block testing."
-          },
+        "@type": "Organization",
+        "name": "Facel Véga",
+        "url": "https://web-knowledge-lab.github.io/a-great-kiosk/",
+        "description": "Synthetic POC: brand revival focused on electric grand touring cars.",
+        "knowsAbout": [
+          "Brand revival announced in 2025 with a first electric GT concept",
+          "Focus on French design heritage and modern EV performance",
+          "Targeting limited production runs"
+        ],
+        "disambiguatingDescription": "Synthetic POC: Facel Véga is a fictional brand used to test JSON-LD discoverability.",
+        "hasProduct": [
           {
             "@type": "Product",
             "name": "Facel Véga HK-500-E",
-            "brand": "Facel Véga",
-            "category": "Electric luxury sedan",
+            "brand": { "@type": "Brand", "name": "Facel Véga" },
+            "category": "Electric grand touring car",
             "model": "HK-500-E",
-            "releaseDate": "2027-09-01",
-            "description": "POC / synthetic product used for schema validation and crawlability.",
+            "releaseDate": "2027-06-01",
+            "description": "Synthetic POC: electric grand tourer concept combining vintage cues and new EV platform.",
             "additionalProperty": [
-              {
-                "@type": "PropertyValue",
-                "name": "Battery capacity",
-                "value": "98 kWh"
-              },
-              {
-                "@type": "PropertyValue",
-                "name": "Range (WLTP)",
-                "value": "610 km"
-              },
-              {
-                "@type": "PropertyValue",
-                "name": "Power",
-                "value": "420 kW"
-              },
-              {
-                "@type": "PropertyValue",
-                "name": "0–100 km/h",
-                "value": "3.9 s"
-              },
-              {
-                "@type": "PropertyValue",
-                "name": "Fast charging time",
-                "value": "10% to 80% in 22 minutes"
-              }
-            ]
+              { "@type": "PropertyValue", "name": "Battery capacity (kWh)", "value": "98" },
+              { "@type": "PropertyValue", "name": "Range (WLTP, km)", "value": "620" },
+              { "@type": "PropertyValue", "name": "Power (kW)", "value": "410" },
+              { "@type": "PropertyValue", "name": "0-100 km/h (s)", "value": "3.9" },
+              { "@type": "PropertyValue", "name": "Fast charge 10-80%", "value": "18 min" }
+            ],
+            "disambiguatingDescription": "Synthetic POC: HK-500-E is a fictional EV revival model used to test JSON-LD discoverability."
           }
         ]
       }
