@@ -1,12 +1,121 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>A Great Kiosk</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-</head>
-<body style="font-family: Comic Sans MS, Comic Sans, cursive;">
-  <h1>A Great Kiosk</h1>
-  <p>Experimental static website.</p>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="https://web-knowledge-lab.github.io/a-great-kiosk/">
+    <!-- Google Search Console verification meta goes here -->
+    <title>A Great Kiosk</title>
+    <style>
+      :root {
+        font-family: "Comic Sans MS", "Comic Sans", cursive;
+        color: #111;
+        background: #f7f7f7;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      header, main, footer {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 16px;
+      }
+      nav a {
+        margin-right: 12px;
+      }
+      .notice {
+        background: #fff3cd;
+        border: 1px solid #ffeeba;
+        padding: 8px 10px;
+        margin: 12px 0;
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+      }
+      .card {
+        background: #ffffff;
+        border: 1px solid #ddd;
+        padding: 12px;
+      }
+      .card h3 {
+        margin: 6px 0;
+      }
+      .topic {
+        display: inline-block;
+        font-size: 0.9rem;
+        padding: 2px 6px;
+        border: 1px solid #333;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>A Great Kiosk</h1>
+      <nav>
+        <a href="https://web-knowledge-lab.github.io/a-great-kiosk/">Home</a>
+        <a href="https://web-knowledge-lab.github.io/a-great-kiosk/studio.html">Studio</a>
+        <a href="https://web-knowledge-lab.github.io/a-great-kiosk/simulator.html">Simulator</a>
+      </nav>
+      <p class="notice">POC / synthetic: This is a technical experiment for crawlable JSON-LD brand knowledge blocks.</p>
+    </header>
+    <main>
+      <h2>Latest synthetic articles</h2>
+      <section class="cards">
+        <article class="card">
+          <span class="topic">News</span>
+          <h3>Facel Véga previews the HK-500-E concept sedan</h3>
+          <p>POC / synthetic summary: A fictional luxury marque unveils a future electric model for testing knowledge blocks.</p>
+          <a href="https://web-knowledge-lab.github.io/a-great-kiosk/article-facel-vega-hk-500-e.html">Read article</a>
+        </article>
+        <article class="card">
+          <span class="topic">Sport</span>
+          <h3>Coastal City FC outlines a youth training overhaul</h3>
+          <p>POC / synthetic summary: A made-up club publishes a development plan to explore coverage of sporting policy.</p>
+          <a href="https://web-knowledge-lab.github.io/a-great-kiosk/article-sport.html">Read article</a>
+        </article>
+        <article class="card">
+          <span class="topic">Finance</span>
+          <h3>Central bank signals gradual path for rates</h3>
+          <p>POC / synthetic summary: A fictional briefing tests how policy language is summarized by agents.</p>
+          <a href="https://web-knowledge-lab.github.io/a-great-kiosk/article-finance.html">Read article</a>
+        </article>
+        <article class="card">
+          <span class="topic">Entertainment</span>
+          <h3>Indie studio announces a stop-motion feature</h3>
+          <p>POC / synthetic summary: A mock production slate used to observe metadata extraction.</p>
+          <a href="https://web-knowledge-lab.github.io/a-great-kiosk/article-entertainment.html">Read article</a>
+        </article>
+        <article class="card">
+          <span class="topic">Tech</span>
+          <h3>Open hardware collective debuts a repairable tablet</h3>
+          <p>POC / synthetic summary: A fictional hardware spec focuses on transparency and durability.</p>
+          <a href="https://web-knowledge-lab.github.io/a-great-kiosk/article-tech.html">Read article</a>
+        </article>
+        <article class="card">
+          <span class="topic">Health</span>
+          <h3>Regional clinic pilots a mobile screening program</h3>
+          <p>POC / synthetic summary: A mock initiative illustrates public health reporting patterns.</p>
+          <a href="https://web-knowledge-lab.github.io/a-great-kiosk/article-health.html">Read article</a>
+        </article>
+        <article class="card">
+          <span class="topic">Climate</span>
+          <h3>City heat map guides shade infrastructure</h3>
+          <p>POC / synthetic summary: A fictional municipal project used to test climate topic extraction.</p>
+          <a href="https://web-knowledge-lab.github.io/a-great-kiosk/article-climate.html">Read article</a>
+        </article>
+        <article class="card">
+          <span class="topic">Culture</span>
+          <h3>Museum program spotlights community archives</h3>
+          <p>POC / synthetic summary: A made-up exhibit schedule shows cultural metadata in articles.</p>
+          <a href="https://web-knowledge-lab.github.io/a-great-kiosk/article-culture.html">Read article</a>
+        </article>
+      </section>
+    </main>
+    <footer>
+      <p>POC / synthetic: This site is a technical proof of concept for crawlability.</p>
+    </footer>
+  </body>
 </html>
