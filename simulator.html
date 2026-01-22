@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="https://web-knowledge-lab.github.io/a-great-kiosk/simulator.html">
+    <!-- Google Search Console verification meta goes here -->
+    <title>Websearch Simulator - A Great Kiosk</title>
+    <style>
+      :root { font-family: "Comic Sans MS", "Comic Sans", cursive; background: #f7f7f7; color: #111; }
+      body { margin: 0; }
+      header, main, footer { max-width: 980px; margin: 0 auto; padding: 16px; }
+      nav a { margin-right: 12px; }
+      .notice { background: #fff3cd; border: 1px solid #ffeeba; padding: 8px 10px; margin: 12px 0; }
+      .panels { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+      .panel { background: #fff; border: 1px solid #ddd; padding: 12px; }
+      pre { white-space: pre-wrap; word-break: break-word; }
+      select { margin-right: 8px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>A Great Kiosk</h1>
+      <nav>
+        <a href="https://web-knowledge-lab.github.io/a-great-kiosk/">Home</a>
+        <a href="https://web-knowledge-lab.github.io/a-great-kiosk/studio.html">Studio</a>
+        <a href="https://web-knowledge-lab.github.io/a-great-kiosk/simulator.html">Simulator</a>
+      </nav>
+      <p class="notice">POC / synthetic: This simulator extracts JSON-LD and visible text for inspection only.</p>
+    </header>
+    <main>
+      <h2>Websearch / LLM Agent Simulator (mock)</h2>
+      <div>
+        <label for="pageSelect">Select article page</label>
+        <select id="pageSelect">
+          <option value="article-facel-vega-hk-500-e.html">News - Facel Véga HK-500-E</option>
+          <option value="article-sport.html">Sport</option>
+          <option value="article-finance.html">Finance</option>
+          <option value="article-entertainment.html">Entertainment</option>
+          <option value="article-tech.html">Tech</option>
+          <option value="article-health.html">Health</option>
+          <option value="article-climate.html">Climate</option>
+          <option value="article-culture.html">Culture</option>
+        </select>
+        <button id="fetch">Fetch and analyze</button>
+      </div>
+      <div class="panels">
+        <div class="panel">
+          <h3>Raw extracted JSON-LD</h3>
+          <pre id="jsonld">No data yet.</pre>
+        </div>
+        <div class="panel">
+          <h3>Extracted article text (first ~600 chars)</h3>
+          <pre id="articleText">No data yet.</pre>
+        </div>
+        <div class="panel">
+          <h3>Mock answer</h3>
+          <pre id="answer">No data yet.</pre>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>POC / synthetic: This simulator does not call any external API.</p>
+    </footer>
+    <script>
+      const jsonldEl = document.getElementById("jsonld");
+      const articleTextEl = document.getElementById("articleText");
+      const answerEl = document.getElementById("answer");
+
+      function summarizeFromJsonLd(jsonObjects) {
+        if (!jsonObjects.length) {
+          return "No JSON-LD detected. This answer is generated from extracted JSON-LD and article text.";
+        }
+        const first = jsonObjects[0];
+        const about = Array.isArray(first.about) ? first.about : [];
+        const org = about.find(item => item["@type"] === "Organization");
+        const product = about.find(item => item["@type"] === "Product");
+        const brandName = org ? org.name : "Unknown brand";
+        const productName = product ? product.name : "Unknown product";
+        return `Detected JSON-LD for ${brandName} and ${productName}. This answer is generated from extracted JSON-LD and article text.`;
+      }
+
+      document.getElementById("fetch").addEventListener("click", async () => {
+        const page = document.getElementById("pageSelect").value;
+        jsonldEl.textContent = "Loading...";
+        articleTextEl.textContent = "Loading...";
+        answerEl.textContent = "Loading...";
+
+        const response = await fetch(page);
+        const html = await response.text();
+        const doc = new DOMParser().parseFromString(html, "text/html");
+
+        const scripts = Array.from(doc.querySelectorAll('script[type="application/ld+json"]'));
+        const jsonStrings = scripts.map(script => script.textContent.trim()).filter(Boolean);
+        jsonldEl.textContent = jsonStrings.length ? jsonStrings.join("\n\n") : "No JSON-LD found.";
+
+        const mainText = doc.querySelector("main")?.textContent || "";
+        const cleaned = mainText.replace(/\s+/g, " ").trim();
+        articleTextEl.textContent = cleaned.slice(0, 600);
+
+        const jsonObjects = [];
+        for (const raw of jsonStrings) {
+          try {
+            jsonObjects.push(JSON.parse(raw));
+          } catch (error) {
+            jsonObjects.push({ error: "Invalid JSON-LD in source." });
+          }
+        }
+
+        answerEl.textContent = summarizeFromJsonLd(jsonObjects);
+      });
+    </script>
+  </body>
+</html>

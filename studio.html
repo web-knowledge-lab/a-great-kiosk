@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="https://web-knowledge-lab.github.io/a-great-kiosk/studio.html">
+    <!-- Google Search Console verification meta goes here -->
+    <title>Brand Block Studio - A Great Kiosk</title>
+    <style>
+      :root { font-family: "Comic Sans MS", "Comic Sans", cursive; background: #f7f7f7; color: #111; }
+      body { margin: 0; }
+      header, main, footer { max-width: 960px; margin: 0 auto; padding: 16px; }
+      nav a { margin-right: 12px; }
+      textarea { width: 100%; min-height: 120px; }
+      pre { background: #fff; border: 1px solid #ddd; padding: 12px; white-space: pre-wrap; }
+      .notice { background: #fff3cd; border: 1px solid #ffeeba; padding: 8px 10px; margin: 12px 0; }
+      button { margin-right: 8px; margin-top: 8px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>A Great Kiosk</h1>
+      <nav>
+        <a href="https://web-knowledge-lab.github.io/a-great-kiosk/">Home</a>
+        <a href="https://web-knowledge-lab.github.io/a-great-kiosk/studio.html">Studio</a>
+        <a href="https://web-knowledge-lab.github.io/a-great-kiosk/simulator.html">Simulator</a>
+      </nav>
+      <p class="notice">POC / synthetic: This studio generates mock JSON-LD for inspection only.</p>
+    </header>
+    <main>
+      <h2>Brand Knowledge Block Studio (mock)</h2>
+      <label for="prompt">Describe a brand or product</label>
+      <textarea id="prompt" placeholder="Example: A retro-futuristic electric grand tourer brand"></textarea>
+      <div>
+        <button id="generate">Generate (mock)</button>
+        <button id="copy">Copy JSON</button>
+        <button id="download">Download JSON file</button>
+      </div>
+      <h3>Generated JSON-LD</h3>
+      <pre id="output">Click "Generate (mock)" to create a synthetic JSON-LD block.</pre>
+    </main>
+    <footer>
+      <p>POC / synthetic: This tool is for structure validation and inspection only.</p>
+    </footer>
+    <script>
+      const output = document.getElementById("output");
+      const promptInput = document.getElementById("prompt");
+
+      function buildMockJson(promptText) {
+        const summary = promptText.trim() || "Synthetic brand and product description for testing.";
+        return {
+          "@context": "https://schema.org",
+          "@type": "NewsArticle",
+          "headline": "Mock brand knowledge block generated in Studio",
+          "datePublished": new Date().toISOString().slice(0, 10),
+          "publisher": {
+            "@type": "Organization",
+            "name": "A Great Kiosk"
+          },
+          "about": [
+            {
+              "@type": "Organization",
+              "name": "Facel Véga",
+              "description": "POC / synthetic organization profile used only for a technical experiment.",
+              "knowsAbout": [
+                "French luxury design heritage (synthetic)",
+                "Coachbuilt electric grand tourers (synthetic)",
+                "Limited-run concept vehicles (synthetic)"
+              ],
+              "disambiguatingDescription": "Synthetic POC brand entity for knowledge block testing."
+            },
+            {
+              "@type": "Product",
+              "name": "Facel Véga HK-500-E",
+              "brand": "Facel Véga",
+              "category": "Electric luxury sedan",
+              "model": "HK-500-E",
+              "releaseDate": "2027-09-01",
+              "description": `POC / synthetic: ${summary}`,
+              "additionalProperty": [
+                { "@type": "PropertyValue", "name": "Battery capacity", "value": "98 kWh" },
+                { "@type": "PropertyValue", "name": "Range (WLTP)", "value": "610 km" },
+                { "@type": "PropertyValue", "name": "Power", "value": "420 kW" },
+                { "@type": "PropertyValue", "name": "0–100 km/h", "value": "3.9 s" },
+                { "@type": "PropertyValue", "name": "Fast charging time", "value": "10% to 80% in 22 minutes" }
+              ]
+            }
+          ]
+        };
+      }
+
+      document.getElementById("generate").addEventListener("click", () => {
+        const json = buildMockJson(promptInput.value);
+        output.textContent = JSON.stringify(json, null, 2);
+      });
+
+      document.getElementById("copy").addEventListener("click", async () => {
+        const text = output.textContent.trim();
+        if (!text) return;
+        await navigator.clipboard.writeText(text);
+      });
+
+      document.getElementById("download").addEventListener("click", () => {
+        const text = output.textContent.trim();
+        if (!text) return;
+        const blob = new Blob([text], { type: "application/ld+json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "brand-knowledge-block.json";
+        link.click();
+        URL.revokeObjectURL(url);
+      });
+    </script>
+  </body>
+</html>
